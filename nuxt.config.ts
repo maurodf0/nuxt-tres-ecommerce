@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Prismic + Nuxt Minimal Starter',
+      title: 'Farbe - Nuxt4 | Tres | Stripe ecommerce',
       htmlAttrs: { lang: 'en' },
       meta: [{ charset: 'utf-8' },
         { name: 'apple-mobile-web-app-title', content: 'Farbe'},
@@ -20,6 +20,8 @@ export default defineNuxtConfig({
       ],
     }
   },
+
+  css: ['@/assets/css/main.css'],
 
   modules: ['@nuxt/eslint', '@nuxtjs/prismic'],
 

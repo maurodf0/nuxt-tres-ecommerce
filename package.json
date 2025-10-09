@@ -18,9 +18,13 @@
     "@nuxt/eslint": "^1.9.0",
     "@nuxtjs/prismic": "^4.1.0",
     "@slicemachine/adapter-nuxt": "^0.3.84",
+    "@tailwindcss/vite": "^4.1.14",
     "concurrently": "^9.2.1",
     "eslint": "^9.36.0",
     "nuxt": "^4.1.2",
     "slice-machine-ui": "^2.18.2"
+  },
+  "dependencies": {
+    "tailwindcss": "^4.1.14"
   }
 }
