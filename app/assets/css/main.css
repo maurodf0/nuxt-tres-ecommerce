@@ -3,4 +3,7 @@
 @theme {
   --color-green: #00e67b;
   --color-white: #dcb8d3;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --font-mono--font-feature-settings: "ss09" on;
 }
