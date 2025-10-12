@@ -26,7 +26,8 @@ defineProps<{
     class="min-h-screen flex flex-col mix-blend-difference md:mix-blend-norma bounded rich-text">
   <h2><BrandSignature /></h2>
   <PrismicRichText :field="settings?.data?.footer_text" />
-<PrismicRichText :field="settings?.data.footer_secondary_text" />
+  <hr class="border-none flex-1" />
+<p>{{ settings?.data.footer_secondary_text }}</p>
 </section>
 </footer>
 

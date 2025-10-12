@@ -35,5 +35,24 @@ body {
 
   & > h3 {
     @apply font-sans font-bold leading-none text-[max(1.25rem,1.25vw)];
+    &:not(:first-child) {
+      @apply mt-4;
+    }
+  }
+
+  & > p,
+  & > ul,
+  & > ul > li {
+    @apply max-w-[40ch] hyphens-auto;
+    &:not(:first-child) {
+      @apply mt-4;
+    }
+  }
+
+  & > p,
+  & li {
+    & > a {
+      @apply underline focus:outline-none focus:bg-black focus:text-white;
+    }
   }
 }
