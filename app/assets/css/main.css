@@ -7,3 +7,6 @@
   --font-mono: "Geist Mono", monospace;
   --font-mono--font-feature-settings: "ss09" on;
 }
+.cta   {
+  @apply leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
+}
