@@ -16,9 +16,8 @@ useSeoMeta({
 
 <template>
   <div>
-    <pre>
-    {{ settings }}
-  </pre>
+    <AppHeader :settings="settings" />
     <slot />
+    <AppFooter :settings="settings"/>
   </div>
 </template>
