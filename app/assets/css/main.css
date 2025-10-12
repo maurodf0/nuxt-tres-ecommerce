@@ -19,3 +19,21 @@ body {
 .cta   {
   @apply leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
 }
+
+.bounded {
+  @apply mx-auto md:mr-0 max-w-[60ch] md:max-w-2/5 px-8 md:px-4 py-16;
+}
+
+.rich-text {
+  & > h1 {
+    @apply font-sans font-bold leading-none text-[max(3rem,5vw)];
+  }
+
+  & > h2 {
+    @apply font-sans font-bold leading-none text-[max(1.875rem,2.5vw)];
+  }
+
+  & > h3 {
+    @apply font-sans font-bold leading-none text-[max(1.25rem,1.25vw)];
+  }
+}

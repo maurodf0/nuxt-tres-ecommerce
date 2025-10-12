@@ -14,7 +14,7 @@ defineProps<{
       </NuxtLink>
 
       <ul class="xl:w-[calc(40%+2rem)] flex items-center pl-8 pr-4 backdrop-blur gap-5">
-       <li v-for="link in settings?.data.navigation" :key="link.key">
+       <li v-for="link in settings?.data.navigation" :key="link.key" class="hidden md:block">
           <PrismicLink :field="link" class="cta"/>
         </li>
           <li class="ml-auto">
