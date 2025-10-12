@@ -1,9 +1,13 @@
 import { repositoryName, apiEndpoint } from './slicemachine.config.json';
-
+import tailwindcss from '@tailwindcss/vite'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-
+vite: {
+  plugins: [
+    tailwindcss(),
+  ]
+},
   app: {
     head: {
       title: 'Farbe - Nuxt4 | Tres | Stripe ecommerce',

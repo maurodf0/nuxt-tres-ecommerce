@@ -8,7 +8,7 @@ defineProps<{
 
 <template>
   <header>
-    <nav>
+    <nav class="flex justify-between items-center">
       <NuxtLink to="/">
         <BrandSignature />
       </NuxtLink>
