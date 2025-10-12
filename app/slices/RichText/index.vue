@@ -10,11 +10,11 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
 
 <template>
   <section>
-    <PrismicRichText
-      :field="slice.primary.content"
-      class="richtext"
-      wrapper="section"
-    />
+    <PrismicRichText :field="slice.primary.title" />
+    <PrismicRichText :field="slice.primary.text" />
+    <template v-for="link in slice.primary.ctas" :key="link.key">
+  <PrismicLink :field="link" :class="link.variant" />
+</template>
   </section>
 </template>
 
