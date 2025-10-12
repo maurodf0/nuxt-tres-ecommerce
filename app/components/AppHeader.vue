@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <header class="bg-[#DCD8D3]">
+  <header>
     <nav class="flex justify-between items-center">
       <NuxtLink to="/" class="cta py-mx ml-4">
         <BrandSignature class="text-lg"/>
@@ -28,3 +28,15 @@ defineProps<{
     </nav>
   </header>
 </template>
+
+<style scoped>
+@reference "@/assets/css/main.css";
+
+a {
+	@apply transition-opacity duration-300 ease-in-out;
+}
+
+header:has(a:hover) a:not(:hover) {
+	opacity: .25;
+}
+</style>

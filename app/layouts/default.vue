@@ -21,3 +21,4 @@ useSeoMeta({
     <AppFooter :settings="settings"/>
   </div>
 </template>
+
