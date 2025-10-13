@@ -16,8 +16,20 @@ body {
   @apply font-mono text-sm;
 }
 
-.cta   {
+.cta {
   @apply leading-tight p-4 inline-block hover:underline focus:outline-none focus-visible:bg-black focus-visible:text-white;
+  & .primary {
+    @apply bg-green focus-visible:bg-black;
+  }
+  & .outline {
+    @apply border-[1.5px] border-black;
+  }
+  & .mute {
+    @apply opacity-25 hover:opacity-100 focus-visible:opacity-100;
+  }
+  & .inverted {
+    @apply bg-black text-white focus-visible:transparent focus-visible:text-black;
+  }
 }
 
 .bounded {
