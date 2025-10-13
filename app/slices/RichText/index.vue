@@ -4,17 +4,16 @@ import type { Content } from '@prismicio/client'
 // The array passed to \`getSliceComponentProps\` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 defineProps(getSliceComponentProps<Content.RichTextSlice>(
-  ['slice', 'index', 'slices', 'context']
 ));
 </script>
 
 <template>
-  <section>
+  <section class="bounded rich-text">
     <PrismicRichText :field="slice.primary.title" />
     <PrismicRichText :field="slice.primary.text" />
-    <template v-for="link in slice.primary.ctas" :key="link.key">
-  <PrismicLink :field="link" :class="link.variant" />
-</template>
+    <div v-for="link in slice.primary.ctas" :key="link.key">
+  <PrismicLink :field="link" :class="link.variant" class="cta" />
+</div>
   </section>
 </template>
 
