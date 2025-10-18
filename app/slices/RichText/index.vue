@@ -11,7 +11,7 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
   <section class="bounded rich-text">
     <PrismicRichText :field="slice.primary.title" />
     <PrismicRichText :field="slice.primary.text" />
-    <div v-if="slice.primary.ctas.length" class="mt-16 flex -ml-4">
+    <div v-if="slice.primary.ctas" class="mt-16 flex -ml-4">
   <PrismicLink 
    v-for="link in slice.primary.ctas" :key="link.key"
    :field="link" :class="link.variant" class="cta" />

@@ -40,6 +40,17 @@
 							"text": "present",
 							"variant": "Transparent"
 						}
+					},
+					{
+						"__TYPE__": "LinkContent",
+						"key": "8ba334d3-7075-4fdc-9083-b4975c9ddf91",
+						"value": {
+							"__TYPE__": "ExternalLink",
+							"url": "google.it",
+							"target": "_blank",
+							"variant": "Outline",
+							"text": "Text"
+						}
 					}
 				]
 			}

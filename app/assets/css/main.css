@@ -28,7 +28,7 @@ body {
     @apply opacity-25 hover:opacity-100 focus-visible:opacity-100;
   }
   & .inverted {
-    @apply bg-black text-white focus-visible:transparent focus-visible:text-black;
+    @apply bg-black text-white  focus-visible:text-black;
   }
 }
 
