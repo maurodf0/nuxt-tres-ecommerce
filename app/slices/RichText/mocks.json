@@ -32,8 +32,8 @@
 				"type": "Link",
 				"value": [
 					{
-						"key": "27893022-80a4-4571-bca3-d4073ff2b5c7",
 						"__TYPE__": "LinkContent",
+						"key": "27893022-80a4-4571-bca3-d4073ff2b5c7",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "http://twitter.com",
@@ -42,8 +42,8 @@
 						}
 					},
 					{
-						"__TYPE__": "LinkContent",
 						"key": "8ba334d3-7075-4fdc-9083-b4975c9ddf91",
+						"__TYPE__": "LinkContent",
 						"value": {
 							"__TYPE__": "ExternalLink",
 							"url": "google.it",
