@@ -276,9 +276,65 @@ export type RichTextSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *RichText → Fullscreen → Primary*
+ */
+export interface RichTextSliceFullscreenPrimary {
+  /**
+   * Title field in *RichText → Fullscreen → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.fullscreen.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *RichText → Fullscreen → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.fullscreen.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * ctas field in *RichText → Fullscreen → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.fullscreen.primary.ctas
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  ctas: prismic.Repeatable<
+    prismic.LinkField<
+      string,
+      string,
+      unknown,
+      prismic.FieldState,
+      "Transparent" | "Primary" | "Outline"
+    >
+  >;
+}
+
+/**
+ * Fullscreen variation for RichText Slice
+ *
+ * - **API ID**: `fullscreen`
+ * - **Description**: RichText
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type RichTextSliceFullscreen = prismic.SharedSliceVariation<
+  "fullscreen",
+  Simplify<RichTextSliceFullscreenPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *RichText*
  */
-type RichTextSliceVariation = RichTextSliceDefault;
+type RichTextSliceVariation = RichTextSliceDefault | RichTextSliceFullscreen;
 
 /**
  * RichText Shared Slice
@@ -321,8 +377,10 @@ declare module "@prismicio/client" {
       AllDocumentTypes,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
+      RichTextSliceFullscreenPrimary,
       RichTextSliceVariation,
       RichTextSliceDefault,
+      RichTextSliceFullscreen,
     };
   }
 }
