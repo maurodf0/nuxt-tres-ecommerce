@@ -24,7 +24,7 @@ defineProps(
 			:field="slice.primary.picture" 
 			 class="z-20 w-full row-span-2"
 			 loading="lazy"/>
-		<figcaption
+		<Slidein
 			class="px-4 pt-4 pb-16 rich-text"
 			:class="{
 				'md:self-start' : slice.variation === 'default' || slice.variation === 'bottom',
@@ -32,7 +32,7 @@ defineProps(
 
 			}">
 			<PrismicRichText :field="slice.primary.caption" />
-		</figcaption>
+		</Slidein>
 	</figure>
 
 		<figure 
@@ -46,13 +46,13 @@ defineProps(
 				:field="slice.primary.secondary_picture" 
 				class="z-20 w-full"
 				loading="lazy"/>
-			<figcaption 
+			<Slidein 
 				class="px-4 pt-4 pb-16 rich-text"
 				:class="{
 					'md:order-first' : slice.variation === 'bottom'
 				}">
 				<PrismicRichText :field="slice.primary.secondary_caption" />
-			</figcaption>
+			</Slidein>
 	</figure>
 	
 		
