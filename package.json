@@ -26,6 +26,7 @@
     "slice-machine-ui": "^2.18.2"
   },
   "dependencies": {
+    "gsap": "^3.13.0",
     "tailwindcss": "^4.1.14"
   }
 }
