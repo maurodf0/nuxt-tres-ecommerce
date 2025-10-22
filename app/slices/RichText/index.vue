@@ -9,11 +9,11 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
 
 <template>
 	
-  <section 
+  <Slidein 
 	class="bounded rich-text flex flex-col justify-center"
 	:class="{
 		'min-h-[40vh]' : slice.variation !== 'fullscreen',
-		'min-h-screen' : slice.variation === 'fullscreen',
+		'min-h-screen opacity-0' : slice.variation === 'fullscreen',
 	}"	>
    		<PrismicRichText :field="slice.primary.title" />
 		<PrismicRichText :field="slice.primary.text" />
@@ -26,7 +26,7 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
 				:class="link.variant?.toLowerCase()"
 			/>
 		</div>
-  </section>
+  </Slidein>
 </template>
 
 <style scoped>
