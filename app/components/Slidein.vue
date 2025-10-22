@@ -1,19 +1,16 @@
 <script setup lang="ts">
 import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-
-
 defineProps<{
   as?: string
 }>()
 
 const el = shallowRef<HTMLElement>()
 
-onMounted(() => {
+useGSAP((isReducedMotion) => {
   if(!el.value) return
-
-  gsap.registerPlugin(ScrollTrigger)
+  	if (isReducedMotion) {
+		return
+	}
 
   gsap.set(el.value, {
     opacity:1,
