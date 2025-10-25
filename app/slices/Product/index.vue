@@ -21,8 +21,12 @@ const product = computed( () => {
 
 <template>
 
-   <Slidein>
+   <Slidein v-if="product">
 		{{product }}
+	 </Slidein>
+
+   <Slidein v-else>
+		<p>Product not found</p>
 	 </Slidein>
 
 </template>
