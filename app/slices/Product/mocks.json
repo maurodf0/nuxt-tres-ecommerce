@@ -1,0 +1,17 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"product": {
+				"key": "2536917a-7036-4603-8fe6-30eeeaef3f4a",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
+			}
+		},
+		"items": []
+	}
+]
