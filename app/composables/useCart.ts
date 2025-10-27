@@ -10,7 +10,7 @@ type CartItem = {
 type CartItems = Record<string, CartItem>
 
 type useCartReturnType = {
-  items: unknown,
+  items: CartItems,
   totalPrice: ComputedRef<number>,
   totalItems: ComputedRef<number>,
   upsertItem: (item: CartItem) => void,
