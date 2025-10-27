@@ -54,15 +54,21 @@ body {
 
   & > p,
   & > ul,
-  & > ul > li {
+  & > ul > li,
+  & > dl {
     @apply max-w-[40ch] hyphens-auto;
     &:not(:first-child) {
       @apply mt-4;
     }
   }
 
+  & > dl > div {
+    @apply flex justify-between;
+  }
+
   & > p,
-  & li {
+  & li,
+  & dd {
     & > a {
       @apply underline focus:outline-none focus:bg-black focus:text-white;
     }

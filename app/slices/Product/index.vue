@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
 
+import DescriptionDetails from "./DescriptionDetails.vue"
+import DescriptionList from "./DescriptionList.vue";
+import DescriptionTerm from "./DescriptionTerm.vue";
+import Div from "./Div.vue";
+import PassThrough from "./PassThrough.vue";
+
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 const props = defineProps(getSliceComponentProps<Content.ProductSlice>());
@@ -38,12 +44,13 @@ const product = computed( () => {
 				<PrismicTable 
 					:field="product.data?.characteristic"
 					:components="{
-						table: xxx,
-						tbody: yyy,
+						table: DescriptionList,
+						tbody: PassThrough,
 						tr: Div,
-						th: dt,
-						td: dd
-					}" />
+						th: DescriptionTerm,
+						td: DescriptionDetails
+					}"
+					 />
 			</section>
 	 </Slidein>
 
