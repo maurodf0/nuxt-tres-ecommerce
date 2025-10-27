@@ -28,6 +28,11 @@ const quantity = ref<number>(1);
 const setQuantity = (value: number) => {
 	quantity.value = Math.max(1, value);
 }
+
+const onSubmit = () => {
+	window.alert('onSubmit');
+	setQuantity(1);
+}
 </script>
 
 <template>
@@ -58,7 +63,7 @@ const setQuantity = (value: number) => {
 					 />
 			</section>
 			<form class="mt-16 text-sm flex max-w-[calc(40ch+1rem)] -ml-4 items-start" @submit.prevent="onSubmit">
-				<div class="flex-1 flex items-center ">
+				<div class="flex-1 flex items-center">
 					<button class="cta" type="button" @click="setQuantity(quantity - 1)">
 						-
 					</button>
