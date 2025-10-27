@@ -18,7 +18,7 @@ export default defineEventHandler( async (event) => {
       typeof product.default_price === 'object' && 
       product.default_price.unit_amount
     )  {
-        console.log('ci siamo')
+        
         productMap[product.id] = {
           id: product.id,
           price: {
@@ -32,7 +32,6 @@ export default defineEventHandler( async (event) => {
     })
 
   //Return data
-  return {
-    productMap
-  }
+  return productMap
+  
 })

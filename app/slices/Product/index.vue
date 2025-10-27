@@ -10,20 +10,28 @@ import PassThrough from "./PassThrough.vue";
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
 const props = defineProps(
-	getSliceComponentProps<Content.ProductSlice, {
-		stripeProducts: Record<string, StripeProduct>
-}>());
-console.log(props.slice.primary.product);
+	getSliceComponentProps<Content.ProductSlice, 
+	{ stripeProducts: Record<string, StripeProduct> }>());
+
+
 const prismic = usePrismic();
 const product = computed( () => {
 	const prismicProduct = props.slice.primary.product
-	
-	if(!prismic.isFilled.contentRelationship(prismicProduct) || !prismicProduct.data.stripe_id) {
+	console.log(prismicProduct);
+	if(!prismic.isFilled.contentRelationship(prismicProduct) || !prismicProduct.data?.stripe_id) {
 		return undefined ;
 	}
 
+	const stripeProduct = props.context.stripeProducts[prismicProduct.data?.stripe_id]
+	console.log(props.context)
+
+	if(!stripeProduct){
+		return undefined
+	}
+
 	return {
-		...prismicProduct
+		...prismicProduct,
+		stripeProduct
 	} 
 })
 
@@ -46,7 +54,7 @@ const onSubmit = () => {
 	 class="bounded rich-text min-h-[150vh] flex flex-col justify-center">
 			<header :id="product.uid" class="rich-text pt-[25vh]">
 				<PrismicRichText :field="product.data?.name" />
-					<p aria-label="Price">TODO / ROLL</p>
+					<p aria-label="Price">{{ product.stripeProduct.price.amount }} / ROLL</p>
 			</header>
 			<section class="rich-text">
 				<h3 class="sr-only">Description</h3>
