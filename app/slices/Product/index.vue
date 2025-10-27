@@ -54,7 +54,10 @@ const product = computed( () => {
 			</section>
 	 </Slidein>
 
-   <Slidein v-else>
+   <Slidein 
+	 	v-else
+		as="article"
+		class="bounded rich-text flex flex-col justify-center">
 		<p>Product not found</p>
 	 </Slidein>
 
