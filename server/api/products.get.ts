@@ -1,12 +1,5 @@
 import { useServerStripe } from '#stripe/server'
-type StripeProduct = {
-  id: string,
-  price: {
-    id: string,
-    amount: number,
-  }
-    error?: string
-}
+
 
 export default defineEventHandler( async (event) => {
   //Fetch data from Stripe

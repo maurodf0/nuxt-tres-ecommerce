@@ -9,7 +9,10 @@ import PassThrough from "./PassThrough.vue";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-const props = defineProps(getSliceComponentProps<Content.ProductSlice>());
+const props = defineProps(
+	getSliceComponentProps<Content.ProductSlice, {
+		stripeProducts: Record<string, StripeProduct>
+}>());
 console.log(props.slice.primary.product);
 const prismic = usePrismic();
 const product = computed( () => {
