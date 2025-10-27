@@ -23,6 +23,11 @@ const product = computed( () => {
 		...prismicProduct
 	} 
 })
+
+const quantity = ref<number>(1);
+const setQuantity = (value: number) => {
+	quantity.value = Math.max(1, value);
+}
 </script>
 
 <template>
@@ -52,6 +57,20 @@ const product = computed( () => {
 					}"
 					 />
 			</section>
+			<form class="mt-16 text-sm flex max-w-[calc(40ch+1rem)] -ml-4 items-start" @submit.prevent="onSubmit">
+				<div class="flex-1 flex items-center ">
+					<button class="cta" type="button" @click="setQuantity(quantity - 1)">
+						-
+					</button>
+					<div class="flex-1 text-center">{{ quantity }}</div>
+					<button class="cta" type="button" @click="setQuantity(quantity + 1)">
+						+
+					</button>
+				</div>
+				<div class="flex-1">
+					<button class="w-full cta primary" type="submit">Add to Cart</button>
+				</div>
+			</form>
 	 </Slidein>
 
    <Slidein 
