@@ -27,6 +27,8 @@
     "slice-machine-ui": "^2.18.2"
   },
   "dependencies": {
+    "@vueuse/core": "^14.0.0",
+    "@vueuse/nuxt": "^14.0.0",
     "gsap": "^3.13.0",
     "tailwindcss": "^4.1.14"
   }
