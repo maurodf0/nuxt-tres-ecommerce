@@ -41,9 +41,28 @@ const setQuantity = (value: number) => {
 }
 
 const onSubmit = () => {
+	const { items, upsertItem } = useCart()
+	if(!product.value){
+		return
+	}
+
+const maybeCartQuantity = items.value[product.value.stripeProduct.id]?.quantity ?? 0
+
+const singleItem = {
+	product: product.value.stripeProduct,
+	quantity: maybeCartQuantity + quantity.value,
+	name: prismic.asText(product.value.data?.name) ?? ''
+}
+console.log(singleItem)
+upsertItem(singleItem)
+
 	window.alert('onSubmit');
 	setQuantity(1);
 }
+
+
+
+
 </script>
 
 <template>
