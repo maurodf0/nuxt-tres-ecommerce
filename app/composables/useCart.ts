@@ -1,23 +1,60 @@
+import { useLocalStorage } from "@vueuse/core"
+
 type CartItem = {
-  product: StripeProduct,
-  quantity: number,
-  name: string
+	product: StripeProduct
+	quantity: number
+	name: string
 }
 
-// Tipizzazione di CartItems, 
-// Cart Items è un oggetto chiave valore che avrà
-//una stringa come chiave e un oggetto CartItem come valore
 type CartItems = Record<string, CartItem>
 
-type useCartReturnType = {
-  items: CartItems,
-  totalPrice: ComputedRef<number>,
-  totalItems: ComputedRef<number>,
-  upsertItem: (item: CartItem) => void,
-  removeItem: (item: CartItem) => void,
-  clear: () => void,
+type UseCartReturnType = {
+	items: Readonly<Ref<CartItems>>
+
+	totalPrice: ComputedRef<number>
+	totalItems: ComputedRef<number>
+
+	upsertItem: (item: CartItem) => void
+	removeItem: (id: string) => void
+	clear: () => void
 }
 
-export const useCart = () => {
+const LOCAL_STORAGE_KEY = "farbe-cart"
 
+export function useCart(): UseCartReturnType {
+	const items = useLocalStorage<CartItems>(LOCAL_STORAGE_KEY, {})
+
+	const totalPrice = computed(() => Object.values(items.value).reduce((sum, item) => sum + (item.product.price.amount * item.quantity), 0))
+	const totalItems = computed(() => Object.values(items.value).reduce((sum, item) => sum + item.quantity, 0))
+
+	function upsertItem(item: CartItem) {
+		if (item.quantity <= 0) {
+			removeItem(item.product.id)
+			return
+		}
+
+		items.value[item.product.id] = item
+	}
+
+	function removeItem(id: string) {
+		delete items.value[id]
+	}
+
+	function clear() {
+		items.value = {}
+	}
+
+	return {
+		// State
+		items: readonly(items),
+
+		// Computed
+		totalPrice,
+		totalItems,
+
+		// Actions
+		upsertItem,
+		removeItem,
+		clear,
+	}
 }
