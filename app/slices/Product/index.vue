@@ -106,7 +106,7 @@ upsertItem(singleItem)
 					<ClientOnly>
 							<NuxtLink to="/#cart">
 						<p 
-							class="text-center"
+							class="mt-2.5 text-center"
 							:class="{
 								invisible: !items[product.stripeProduct?.id]?.quantity
 							}">
