@@ -55,8 +55,6 @@ const singleItem = {
 }
 console.log(singleItem)
 upsertItem(singleItem)
-
-	window.alert('onSubmit');
 	setQuantity(1);
 }
 
