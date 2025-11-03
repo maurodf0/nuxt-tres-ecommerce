@@ -4,6 +4,9 @@ import type { Content } from '@prismicio/client'
 defineProps<{
   settings?: Content.SettingsDocument
 }>()
+
+const { totalItems } = useCart();
+
 </script>
 
 <template>
@@ -19,7 +22,7 @@ defineProps<{
         </li>
           <li class="ml-auto">
         <NuxtLink to="/cart" class="cta">
-          Cart (0)
+          Cart ({{ totalItems }})
         </NuxtLink>
       </li>
       </ul>
