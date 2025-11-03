@@ -22,8 +22,7 @@ const product = computed( () => {
 		return undefined ;
 	}
 
-	const stripeProduct = props.context.stripeProducts[prismicProduct.data?.stripe_id]
-	console.log(props.context)
+	const stripeProduct = props.context.stripeProducts?.[prismicProduct.data?.stripe_id]
 
 	if(!stripeProduct){
 		return undefined
@@ -35,13 +34,15 @@ const product = computed( () => {
 	} 
 })
 
+		const { items, upsertItem } = useCart()
+
 const quantity = ref<number>(1);
 const setQuantity = (value: number) => {
 	quantity.value = Math.max(1, value);
 }
 
 const onSubmit = () => {
-	const { items, upsertItem } = useCart()
+
 	if(!product.value){
 		return
 	}
