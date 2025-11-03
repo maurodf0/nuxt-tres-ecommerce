@@ -102,6 +102,17 @@ upsertItem(singleItem)
 				</div>
 				<div class="flex-1">
 					<button class="w-full cta primary" type="submit">Add to Cart</button>
+					<ClientOnly>
+							<NuxtLink to="/#cart">
+						<p 
+							class="text-center"
+							:class="{
+								invisible: !items[product.stripeProduct?.id]?.quantity
+							}">
+						
+								{{ items[product.stripeProduct?.id]?.quantity }} in cart</p>
+							</NuxtLink>
+					</ClientOnly>
 				</div>
 			</form>
 	 </Slidein>
