@@ -17,8 +17,9 @@ const { items, removeItem, totalPrice } = useCart();
 
 <template>
 	<div>
-		<SlideIn
+		<Slidein
 			id="cart"
+			as="form"
 			class="bounded rich-text min-h-screen flex flex-col"
 			method="POST"
 			action="/api/checkout"
@@ -48,6 +49,6 @@ const { items, removeItem, totalPrice } = useCart();
 			</template>
 			<PrismicRichText v-else :field="slice.primary.empty_text" />
 		</ClientOnly>
-	</SlideIn>
+	</Slidein>
 </div>
 </template>
