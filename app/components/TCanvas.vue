@@ -5,6 +5,7 @@
 
     <figure>
     <TresCanvas>
+      <OrbitControls />
       <TresPerspectiveCamera 
         :fov="45"
         :look-at="[0,0,0,0]"
@@ -12,8 +13,10 @@
         />
       <TresMesh>
         <TresTorusGeometry :args="[1, 0.5, 16, 32]"/>
-        <TresMeshBasicMaterial color="blue"/>
+        <TresMeshBasicMaterial color="white" />
       </TresMesh>
+        <TresAxesHelper />
+        <TresGridHelper />
     </TresCanvas>
     </figure>
  
