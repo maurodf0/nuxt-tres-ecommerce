@@ -27,7 +27,13 @@ vite: {
 
   css: ['@/assets/css/main.css'],
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic', '@nuxt/fonts', '@unlok-co/nuxt-stripe'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxtjs/prismic',
+    '@nuxt/fonts',
+    '@unlok-co/nuxt-stripe',
+    '@tresjs/nuxt'
+  ],
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,
