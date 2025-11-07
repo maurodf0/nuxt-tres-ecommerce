@@ -39,6 +39,7 @@ const { items, removeItem, totalPrice } = useCart();
 							class="cta w-12.5 -mr-4">
 							x
 						</button>
+						<input type="hidden" :name="item.product.price.id" :value="item.quantity">
 					</li>	
 				</ul>
 				<hr clas="max-w-[40ch]" />
