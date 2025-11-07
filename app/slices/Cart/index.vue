@@ -11,42 +11,42 @@ defineProps(
     "context",
   ]),
 );
+
+const { items, removeItem, totalPrice } = useCart();
 </script>
 
 <template>
-  <section
-    :data-slice-type="slice.slice_type"
-    :data-slice-variation="slice.variation"
-  >
-    Placeholder component for cart (variation: {{ slice.variation }}) slices.
-
-    <br />
-    <strong>You can edit this slice directly in your code editor.</strong>
-    <!--
-	💡 Use Prismic MCP with your code editor
-
-	Get AI-powered help to build your slice components — based on your actual model.
-
-	▶️ Setup:
-	1. Add a new MCP Server in your code editor:
-
-	{
-		"mcpServers": {
-			"Prismic MCP": {
-				"command": "npx",
-				"args": ["-y", "@prismicio/mcp-server@latest"]
-			}
-		}
-	}
-
-	2. Select a model optimized for coding (e.g. Claude 3.7 Sonnet or similar)
-
-	✅ Then open your slice file and ask your code editor:
-		"Code this slice"
-
-	Your code editor reads your slice model and helps you code faster ⚡
-	🎙️ Give your feedback: https://community.prismic.io/t/help-us-shape-the-future-of-slice-creation/19505
-	📚 Documentation: https://prismic.io/docs/ai#code-with-prismics-mcp-server
--->
-  </section>
+	<div>
+		<SlideIn
+			id="cart"
+			class="bounded rich-text min-h-screen flex flex-col"
+			method="POST"
+			action="/api/checkout"
+		>
+		<PrismicRichText :field="slice.primary.title" />
+		<ClientOnly>
+			<template v-if="Object.keys(items).length">
+				<PrismicRichText :field="slice.primary.text" />
+				<ul class="mt-16 max-w-[40ch]">
+					<li v-for="item in items" :key="item.product.id" class="flex items-center">
+						<span class="flex-1">{{ item.name }}</span> 
+						<span class="flex-1 text-right" :aria-label="`Quantity for ${item.name}`">{{ item.quantity }}</span> 
+						<span class="flex-1 text-right"
+						:aria-label="`Price for ${item.name}`">{{ formatPrice(item.product.price.amount * item.quantity)  }}</span>
+						<button 
+							type="button" 
+							@click="removeItem(item.product.id)"
+							class="cta w-12.5 -mr-4">
+							x
+						</button>
+					</li>	
+				</ul>
+				<hr clas="max-w-[40ch]" />
+				<p aria-label="Total Price" class="text-right pr-8.5">{{ formatPrice(totalPrice) }}</p>
+				<button type="submit" class="cta primary mt-16 max-w-[40ch] w-full">Checkout</button>
+			</template>
+			<PrismicRichText v-else :field="slice.primary.empty_text" />
+		</ClientOnly>
+	</SlideIn>
+</div>
 </template>
