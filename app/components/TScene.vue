@@ -1,5 +1,6 @@
 <script setup lang="ts">
   /* eslint-disable vue/attribute-hyphenation */
+ 
 </script>
 
 <template>
@@ -36,7 +37,7 @@
 	<Suspense>
 		<Environment
 			files="/textures/lobby.hdr"
-			:environment-intensity="0.25"
+			:environment-intensity="1"
 		/>
 	</Suspense>
 </template>
