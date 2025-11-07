@@ -1,9 +1,18 @@
 <script setup lang="ts">
+
+  const mounted = ref(false);
+
+  onMounted(() => {
+    mounted.value = true;
+  })
+
 </script>
 
 <template>
 
-    <figure>
+    <figure 
+      class="transition-opacity delay-300 duration-1000 ease-in-out"
+      :class="{'opacity-0' : !mounted}">
     <TresCanvas>
       <OrbitControls />
       <TresPerspectiveCamera 
@@ -11,12 +20,9 @@
         :look-at="[0,0,0,0]"
         :position="[0,0,20]" 
         />
-      <TresMesh>
-        <TresTorusGeometry :args="[1, 0.5, 16, 32]"/>
-        <TresMeshBasicMaterial color="white" />
-      </TresMesh>
-        <TresAxesHelper />
-        <TresGridHelper />
+          <slot />
+        <!-- <TresAxesHelper />
+        <TresGridHelper /> -->
     </TresCanvas>
     </figure>
  
