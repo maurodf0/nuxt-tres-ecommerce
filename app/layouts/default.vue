@@ -6,6 +6,8 @@ const { data: settings } = await useAsyncData('settings',() =>
 )
 
 const route = useRoute();
+const {clear} = useCart();
+
 
 useSeoMeta({
   title: settings.value?.data.site_title,
@@ -17,7 +19,7 @@ useSeoMeta({
 
 onMounted( () => {
   if(route.query.order === 'completed'){
-    useCart.clear();
+    clear();
     useRouter().replace({
       path: route.path
     })
