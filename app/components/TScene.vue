@@ -1,44 +1,70 @@
 <script setup lang="ts">
   /* eslint-disable vue/attribute-hyphenation */
-	import type { Group } from 'three';
+	import { useWindowSize } from '@vueuse/core';
+import type { Group } from 'three';
 
+	const { width } = useWindowSize()
+
+	const activeModel = ref<string>('800');
 	const $canister = ref<Group | null>();
 	const $canisterInternal = ref<Group | null>();
+	const $packaging = ref<Group | null>();
 
 	useLoop().onBeforeRender(({elapsed}) => {
 		if($canisterInternal.value){
 			$canisterInternal.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) *
 Math.PI / 2		}
 	} )
+
+const options = computed(() => {
+	if (width.value >= 1280) {
+		return {
+			x: 0.33,
+			canisterPosition: [1.5, 2.5, 0],
+			packagingPosition: [-1.5, -2.5, 0],
+			scale: 1,
+		} as const
+	}
+
+	return {
+		x: 0.5,
+		canisterPosition: [2.5, 4.5, 0],
+		packagingPosition: [-2.5, -5, 0],
+		scale: 0.75,
+	} as const
+})
 	
 </script>
 
 <template>
-	<TresGroup :position="[1.5, 2.5, 0]">
-	<Levioso> 
-		<TresGroup 
-			ref="$canister">
-				<TresGroup ref="$canisterInternal" >
-					<TFilmCanister 
-						model="200"
-						:rotation="[0,0, Math.PI / 8]"/>
+	<TAbsoluteGroup :x="options.x" :distance="20">
+		<TresGroup :position="[1.5, 2.5, 0]" :scale="options.scale">
+		<Levioso> 
+			<TresGroup 
+				ref="$canister">
+					<TresGroup ref="$canisterInternal" >
+						<TFilmCanister 
+							:model="activeModel"
+							:rotation="[0,0, Math.PI / 8]"/>
+				</TresGroup>
 			</TresGroup>
-		</TresGroup>
-	</Levioso>
-</TresGroup>
+		</Levioso>
+	</TresGroup>
+</TAbsoluteGroup>
 
-	<TresGroup :position="[-1.5, -2.5, 0]">
-	<Levioso> 
-		<TresGroup 
-			ref="$packaging">
-					<TFilmPackaging 
-						model="200"
-						:rotation="[-Math.PI / 2, 0, Math.PI / 5]"/>
-		
-		</TresGroup>
-	</Levioso>
+	<TAbsoluteGroup :x="options.x" :distance="20">
+		<TresGroup :position="[-1.5, -2.5, 0]" :scale="options.scale">
+		<Levioso> 
+			<TresGroup 
+				ref="$packaging">
+						<TFilmPackaging 
+							:model="activeModel"
+							:rotation="[-Math.PI / 2, 0, Math.PI / 5]"/>
+			
+			</TresGroup>
+		</Levioso>
 </TresGroup>
-
+</TAbsoluteGroup>
 
         <TresMesh 
           receive-shadow
@@ -70,8 +96,8 @@ Math.PI / 2		}
 
 	<Suspense>
 		<Environment 
-		files="/textures/lobby2.hdr" 
-			:environment-intensity="0.25"
+		files="/textures/lobby.hdr" 
+			:environment-intensity="0.5"
 		/>
 	</Suspense>
 </template>

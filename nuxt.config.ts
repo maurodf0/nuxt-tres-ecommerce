@@ -6,7 +6,10 @@ export default defineNuxtConfig({
 vite: {
   plugins: [
     tailwindcss(),
-  ]
+  ],
+  resolve: {
+    dedupe: ['three'],
+  }
 },
   app: {
     head: {
