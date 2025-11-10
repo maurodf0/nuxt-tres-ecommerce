@@ -1,6 +1,5 @@
 <script setup lang="ts">
   /* eslint-disable vue/attribute-hyphenation */
- 
 </script>
 
 <template>
@@ -20,6 +19,10 @@
           />
       </TresMesh>
 
+			<GLTFModel 
+			path="/canister/canister.gltf" 
+			:scale="100"/>
+
 <TresDirectionalLight
 		cast-shadow
 		:position="[-8, 6, 20]"
@@ -30,14 +33,14 @@
 		:shadow-camera-right="16"
 		:shadow-camera-top="16"
 		:shadow-camera-bottom="-16"
-		:color="0xFFFFFF"
+		
 	/>
 
 	<SoftShadows :size="50" :samples="10" />
 
 	<Suspense>
-		<Environment
-			files="/textures/lobby.hdr"
+		<Environment 
+		files="/textures/lobby.hdr" 
 			:environment-intensity="0.25"
 		/>
 	</Suspense>
