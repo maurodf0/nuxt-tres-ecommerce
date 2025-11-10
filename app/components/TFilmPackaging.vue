@@ -1,0 +1,14 @@
+<script setup lang="ts">
+  defineProps<{
+    model:string
+  }>()
+</script>
+
+<template>
+  <TModel 
+    model="packaging/packaging.gltf"
+    :map="`/textures/${model}-packaging-min.jpg`"
+    :metalness-map="`/textures/${model}-packaging-min.jpg`"
+    v-bind="$attrs"
+    />
+</template>

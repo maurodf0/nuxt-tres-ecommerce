@@ -26,6 +26,20 @@ Math.PI / 2		}
 		</TresGroup>
 	</Levioso>
 </TresGroup>
+
+	<TresGroup :position="[-1.5, -2.5, 0]">
+	<Levioso> 
+		<TresGroup 
+			ref="$packaging">
+					<TFilmPackaging 
+						model="200"
+						:rotation="[-Math.PI / 2, 0, Math.PI / 5]"/>
+		
+		</TresGroup>
+	</Levioso>
+</TresGroup>
+
+
         <TresMesh 
           receive-shadow
           :position="[0,0,-4]">
