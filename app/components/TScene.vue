@@ -38,48 +38,44 @@ const options = computed(() => {
 
 <template>
 	<TAbsoluteGroup :x="options.x" :distance="20">
-		<TresGroup :position="[1.5, 2.5, 0]" :scale="options.scale">
-		<Levioso> 
-			<TresGroup 
-				ref="$canister">
-					<TresGroup ref="$canisterInternal" >
-						<TFilmCanister 
+		<TresGroup :position="options.canisterPosition" :scale="options.scale">
+			<Levioso>
+				<TresGroup ref="$canister">
+					<TresGroup ref="$canisterInternal">
+						<TFilmCanister
 							:model="activeModel"
-							:rotation="[0,0, Math.PI / 8]"/>
+							:rotation="[0, 0, Math.PI / 8]"
+						/>
+					</TresGroup>
 				</TresGroup>
-			</TresGroup>
-		</Levioso>
-	</TresGroup>
-</TAbsoluteGroup>
+			</Levioso>
+		</TresGroup>
+		<TresGroup :position="options.packagingPosition" :scale="options.scale">
+			<Levioso>
+				<TresGroup ref="$packaging">
+					<TFilmPackaging
+						:model="activeModel"
+						:rotation="[-Math.PI / 2, 0, Math.PI / 3]"
+					/>
+				</TresGroup>
+			</Levioso>
+		</TresGroup>
+	</TAbsoluteGroup>
 
-	<TAbsoluteGroup :x="options.x" :distance="20">
-		<TresGroup :position="[-1.5, -2.5, 0]" :scale="options.scale">
-		<Levioso> 
-			<TresGroup 
-				ref="$packaging">
-						<TFilmPackaging 
-							:model="activeModel"
-							:rotation="[-Math.PI / 2, 0, Math.PI / 5]"/>
-			
-			</TresGroup>
-		</Levioso>
-</TresGroup>
-</TAbsoluteGroup>
+	<TresMesh
+		receive-shadow
+		:position="[0, 0, -4]"
+		:rotation="[0, 0, 0]"
+	>
+		<TresPlaneGeometry :args="[400, 400, 10, 10]" />
+		<TresMeshStandardMaterial
+			color="#ffffff"
+			:roughness="0.5"
+			:metalness="0.5"
+		/>
+	</TresMesh>
 
-        <TresMesh 
-          receive-shadow
-          :position="[0,0,-4]">
-          <TresPlaneGeometry :args="[400, 400, 10, 10]"/>
-          <TresMeshStandardMaterial 
-            color="white" 
-            :roughness="0.5"
-            :metalness="0.5"
-          />
-      </TresMesh>
-
-		
-
-<TresDirectionalLight
+	<TresDirectionalLight
 		cast-shadow
 		:position="[-8, 6, 20]"
 		:intensity=".5"
@@ -89,15 +85,18 @@ const options = computed(() => {
 		:shadow-camera-right="16"
 		:shadow-camera-top="16"
 		:shadow-camera-bottom="-16"
-		
+		:color="0xFFFFFF"
 	/>
 
-	<SoftShadows :size="50" :samples="7" />
+	<SoftShadows 
+		:size="40" 
+		:samples="10" 
+		:focus="0.5"/>
 
 	<Suspense>
-		<Environment 
-		files="/textures/lobby.hdr" 
-			:environment-intensity="0.5"
+		<Environment
+			files="/textures/lobby.hdr"
+			:environment-intensity=".25"
 		/>
 	</Suspense>
 </template>
