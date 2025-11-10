@@ -78,7 +78,7 @@ const options = computed(() => {
 	<TresDirectionalLight
 		cast-shadow
 		:position="[-8, 6, 20]"
-		:intensity=".5"
+		:intensity=".95"
 		:shadow-mapSize-width="512"
 		:shadow-mapSize-height="512"
 		:shadow-camera-left="-16"
@@ -86,6 +86,7 @@ const options = computed(() => {
 		:shadow-camera-top="16"
 		:shadow-camera-bottom="-16"
 		:color="0xFFFFFF"
+		dcd8d3
 	/>
 
 	<SoftShadows 
