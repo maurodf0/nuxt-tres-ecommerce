@@ -6,7 +6,7 @@
 
 <template>
   <TModel 
-    model="canister/canister.gltf"
+    model="/canister/canister.gltf"
     :map="`/textures/${model}-color-min.jpg`"
     :metalness-map="`/textures/${model}-metallic-min.jpg`"
     v-bind="$attrs"

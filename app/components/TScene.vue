@@ -6,6 +6,7 @@ import gsap from 'gsap';
 
 	const { width } = useWindowSize()
  	const { totalItems } = useCart();
+	const route = useRoute()
 
 	const activeModel = ref<string>('800');
 	const $canister = ref<Group | null>();
@@ -43,7 +44,7 @@ const options = computed(() => {
 		const $packagingPosition = $packaging.value.position
 
 		const $canisterRotation = $canister.value.rotation;
-const $packagingRotation = $packaging.value.rotation;
+		const $packagingRotation = $packaging.value.rotation;
 
 		if(!isReduceMotion && window.scrollY < 20){
 			gsap.fromTo([$canisterPosition,  $packagingPosition], {
@@ -71,7 +72,7 @@ const $packagingRotation = $packaging.value.rotation;
 				}
 			})
 		}
-	})
+	}, () => route.path)
 
 </script>
 

@@ -6,7 +6,7 @@
 
 <template>
   <TModel 
-    model="packaging/packaging.gltf"
+    model="/packaging/packaging.gltf"
     :map="`/textures/${model}-packaging-min.jpg`"
     :metalness-map="`/textures/${model}-packaging-min.jpg`"
     v-bind="$attrs"
