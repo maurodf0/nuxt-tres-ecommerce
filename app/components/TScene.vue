@@ -38,13 +38,13 @@ const options = computed(() => {
 	useGSAP( (isReduceMotion) => {
 		if(!$canister.value || !$packaging.value) return
 
-		const $canisterPosition = $canister.position;
-		const $packagingPosition = $packaging.position;
+		const $canisterPosition = $canister.value.position
+		const $packagingPosition = $packaging.value.position
 
-		const $canisterRotation = $packaging.rotation;
-		const $packagingRotation = $packaging.rotation;
+		const $canisterRotation = $canister.value.rotation;
+const $packagingRotation = $packaging.value.rotation;
 
-		if(!isReduceMotion && window.scrollY < 20) {
+		if(!isReduceMotion && window.scrollY < 20){
 			gsap.fromTo([$canisterPosition,  $packagingPosition], {
 				y: -12
 			}, {
@@ -56,6 +56,7 @@ const options = computed(() => {
 			})
 		}
 	})
+
 </script>
 
 <template>
