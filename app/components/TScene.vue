@@ -5,6 +5,7 @@ import type { Group } from 'three';
 import gsap from 'gsap';
 
 	const { width } = useWindowSize()
+ 	const { totalItems } = useCart();
 
 	const activeModel = ref<string>('800');
 	const $canister = ref<Group | null>();
@@ -53,6 +54,21 @@ const $packagingRotation = $packaging.value.rotation;
 				duration: 1,
 				stagger: 0.2,
 				ease: 'power2.inOut'
+			})
+		}
+
+		if(!isReduceMotion){
+			watch(totalItems, (next, prev) => {
+				if(next <= prev){
+					return
+				} else {
+					gsap.to([$canisterRotation, $packagingRotation], {
+						y: `+=${Math.PI * 2}`,
+						stagger: 0.2,
+						ease: 'power2.inOut',
+						duration: 0.8
+					})
+				}
 			})
 		}
 	})
