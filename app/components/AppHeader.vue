@@ -21,7 +21,7 @@ const { totalItems } = useCart();
           <PrismicLink :field="link" class="cta"/>
         </li>
           <li class="ml-auto">
-        <NuxtLink to="/cart" class="cta">
+        <NuxtLink to="/#cart" class="cta">
           Cart (<ClientOnly fallback="|">{{ totalItems }}</ClientOnly>)
         </NuxtLink>
       </li>
