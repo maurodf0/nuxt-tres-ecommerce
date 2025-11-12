@@ -1,7 +1,8 @@
 <script setup lang="ts">
   /* eslint-disable vue/attribute-hyphenation */
-	import { useWindowSize } from '@vueuse/core';
+import { useWindowSize } from '@vueuse/core';
 import type { Group } from 'three';
+import gsap from 'gsap';
 
 	const { width } = useWindowSize()
 
@@ -34,6 +35,27 @@ const options = computed(() => {
 	} as const
 })
 	
+	useGSAP( (isReduceMotion) => {
+		if(!$canister.value || !$packaging.value) return
+
+		const $canisterPosition = $canister.position;
+		const $packagingPosition = $packaging.position;
+
+		const $canisterRotation = $packaging.rotation;
+		const $packagingRotation = $packaging.rotation;
+
+		if(!isReduceMotion && window.scrollY < 20) {
+			gsap.fromTo([$canisterPosition,  $packagingPosition], {
+				y: -12
+			}, {
+				y:0,
+				delay: 0.3,
+				duration: 1,
+				stagger: 0.2,
+				ease: 'power2.inOut'
+			})
+		}
+	})
 </script>
 
 <template>
