@@ -35,6 +35,14 @@
 						}
 					}
 				]
+			},
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "3cc78ba8-b701-4d37-b32e-5a191361b6ea",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []

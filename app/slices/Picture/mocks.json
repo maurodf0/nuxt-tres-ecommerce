@@ -70,6 +70,14 @@
 						}
 					}
 				]
+			},
+			"product": {
+				"key": "6261504c-6b0e-4e12-8864-4b06331665e7",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": []
@@ -145,6 +153,14 @@
 						}
 					}
 				]
+			},
+			"procuct": {
+				"key": "61fc4ae5-3618-4e14-b4cd-d85c00ace9c9",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": [
@@ -225,6 +241,14 @@
 						}
 					}
 				]
+			},
+			"product": {
+				"__TYPE__": "LinkContent",
+				"key": "1a72889b-0acb-4348-b488-1fa4b1bdb96b",
+				"value": {
+					"__TYPE__": "DocumentLink",
+					"id": "mock_document_id"
+				}
 			}
 		},
 		"items": [

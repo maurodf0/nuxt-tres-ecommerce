@@ -10,6 +10,9 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
 <template>
 	
   <Slidein 
+	v-bind="getSceneAttributes({
+		position: 'center'
+		model:})"
 	class="bounded rich-text flex flex-col justify-center"
 	:class="{
 		'min-h-[40vh]' : slice.variation !== 'fullscreen',

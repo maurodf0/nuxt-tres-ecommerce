@@ -8,7 +8,8 @@ defineProps<{
 
 <template>
 	<footer
-		class="relative z-20 bg-black text-white"
+	class="relative z-20 bg-black text-white"
+	v-bind="getSceneAttributes({position: 'top'})"
 	>
 		<figure class="absolute inset-0 pointer-events-none overflow-hidden">
 			<svg class="sticky top-0 left-0 h-screen w-full xl:w-auto" width="48" height="56" viewBox="0 0 48 56" fill="white" xmlns="http://www.w3.org/2000/svg">
