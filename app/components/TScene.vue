@@ -1,23 +1,17 @@
-<script setup lang="ts">
-  /* eslint-disable vue/attribute-hyphenation */
-import { useWindowSize } from '@vueuse/core';
-import type { Group } from 'three';
-import gsap from 'gsap';
+<script lang="ts" setup>
+/* eslint-disable vue/attribute-hyphenation */
+import type { Group } from "three"
+import { useWindowSize } from "@vueuse/core"
+import { gsap } from "gsap"
 
-	const { width } = useWindowSize()
- 	const { totalItems } = useCart();
-	const route = useRoute()
+const { totalItems } = useCart()
+const route = useRoute()
+const { width } = useWindowSize()
 
-	const activeModel = ref<string>('800');
-	const $canister = ref<Group | null>();
-	const $canisterInternal = ref<Group | null>();
-	const $packaging = ref<Group | null>();
-
-	useLoop().onBeforeRender(({elapsed}) => {
-		if($canisterInternal.value){
-			$canisterInternal.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) *
-Math.PI / 2		}
-	} )
+const activeModel = ref<string>("800")
+const $canister = shallowRef<Group | null>(null)
+const $canisterInternal = shallowRef<Group | null>(null)
+const $packaging = shallowRef<Group | null>(null)
 
 const options = computed(() => {
 	if (width.value >= 1280) {
@@ -36,44 +30,114 @@ const options = computed(() => {
 		scale: 0.75,
 	} as const
 })
-	
-	useGSAP( (isReduceMotion) => {
-		if(!$canister.value || !$packaging.value) return
 
-		const $canisterPosition = $canister.value.position
-		const $packagingPosition = $packaging.value.position
+useLoop().onBeforeRender(({ elapsed }) => {
+	if ($canisterInternal.value) {
+		$canisterInternal.value.rotation.y = Math.PI / 4 - Math.sin(elapsed * 0.25) * Math.PI / 2
+	}
+})
 
-		const $canisterRotation = $canister.value.rotation;
-		const $packagingRotation = $packaging.value.rotation;
+useGSAP((isReducedMotion) => {
+	if (!$canister.value || !$packaging.value) {
+		return
+	}
 
-		if(!isReduceMotion && window.scrollY < 20){
-			gsap.fromTo([$canisterPosition,  $packagingPosition], {
-				y: -12
-			}, {
-				y:0,
-				delay: 0.3,
-				duration: 1,
-				stagger: 0.2,
-				ease: 'power2.inOut'
-			})
-		}
+	const $canisterPosition = $canister.value.position
+	const $packagingPosition = $packaging.value.position
 
-		if(!isReduceMotion){
-			watch(totalItems, (next, prev) => {
-				if(next <= prev){
-					return
-				} else {
-					gsap.to([$canisterRotation, $packagingRotation], {
-						y: `+=${Math.PI * 2}`,
-						stagger: 0.2,
-						ease: 'power2.inOut',
-						duration: 0.8
-					})
+	const $canisterRotation = $canister.value.rotation
+	const $packagingRotation = $packaging.value.rotation
+
+	function animateScroll() {
+		const $sections = document.querySelectorAll<HTMLElement>("[data-scene-position]")
+
+		$sections.forEach(($section) => {
+			const model = $section.dataset.sceneModel
+			const position = $section.dataset.scenePosition
+			const shouldRotate = !isReducedMotion && Boolean($section.dataset.sceneRotate)
+
+			function onUpdate(this: gsap.TweenVars) {
+				if (this.progress() > 0.2 && this.progress() < 0.7 && model) {
+					activeModel.value = model
 				}
-			})
-		}
-	}, () => route.path)
+			}
 
+			function onRefresh(self: ScrollTrigger) {
+				if (self.isActive && model) {
+					activeModel.value = model
+				}
+			}
+
+			if (position === "center" || position === "top") {
+				gsap.to([$canisterPosition, $packagingPosition], {
+					y: position === "center" ? 0 : 24,
+					stagger: 0.05,
+					ease: "power2.inOut",
+					repeatRefresh: true,
+					onUpdate: shouldRotate ? undefined : onUpdate,
+					scrollTrigger: {
+						trigger: $section,
+						start: position === "center" ? "top+=40% bottom" : "top bottom",
+						end: position === "center" ? "top+=90% bottom" : "top+=50% bottom",
+						scrub: true,
+						invalidateOnRefresh: true,
+						onRefresh: shouldRotate ? undefined : onRefresh,
+					},
+				})
+			}
+
+			if (shouldRotate) {
+				gsap.to([$canisterRotation, $packagingRotation], {
+					y: `+=${Math.PI * 2}`,
+					stagger: 0.05,
+					ease: "linear",
+					repeatRefresh: true,
+					onUpdate,
+					scrollTrigger: {
+						trigger: $section,
+						start: "top center",
+						end: "bottom center",
+						scrub: 0.6,
+						invalidateOnRefresh: true,
+						onRefresh,
+					},
+				})
+			}
+		})
+	}
+
+	// Intro animation
+	if (!isReducedMotion && window.scrollY < 20) {
+		gsap.fromTo([$canisterPosition, $packagingPosition], {
+			y: -12,
+		}, {
+			y: 0,
+			delay: 0.3,
+			duration: 1,
+			stagger: 0.2,
+			ease: "power2.out",
+			onComplete: animateScroll,
+		})
+	} else {
+		animateScroll()
+	}
+
+	// Spin on add to cart
+	if (!isReducedMotion) {
+		watch(totalItems, (next, prev) => {
+			if (next <= prev) {
+				return
+			}
+
+			gsap.to([$canisterRotation, $packagingRotation], {
+				y: `+=${Math.PI * 2}`,
+				stagger: 0.05,
+				duration: 0.8,
+				ease: "power2.inOut",
+			})
+		})
+	}
+}, () => route.path)
 </script>
 
 <template>
@@ -118,7 +182,7 @@ const options = computed(() => {
 	<TresDirectionalLight
 		cast-shadow
 		:position="[-8, 6, 20]"
-		:intensity=".95"
+		:intensity=".5"
 		:shadow-mapSize-width="512"
 		:shadow-mapSize-height="512"
 		:shadow-camera-left="-16"
@@ -126,18 +190,14 @@ const options = computed(() => {
 		:shadow-camera-top="16"
 		:shadow-camera-bottom="-16"
 		:color="0xFFFFFF"
-		dcd8d3
 	/>
 
-	<SoftShadows 
-		:size="40" 
-		:samples="10" 
-		:focus="0.5"/>
+	<SoftShadows :size="50" :samples="10" />
 
 	<Suspense>
 		<Environment
 			files="/textures/lobby.hdr"
-			:environment-intensity=".25"
+			:environment-intensity="0.25"
 		/>
 	</Suspense>
 </template>

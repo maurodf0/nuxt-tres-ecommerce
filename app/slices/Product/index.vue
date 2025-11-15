@@ -69,7 +69,7 @@ upsertItem(singleItem)
    <Slidein 
 	 v-if="product"
 	 v-bind="getSceneAttributes({
-		position: 'top',
+		position: 'center',
 		model: product.uid,
 		rotate: true
 	})"
