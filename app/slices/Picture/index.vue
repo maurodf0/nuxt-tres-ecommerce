@@ -15,6 +15,10 @@ defineProps(
 
 <template>
   <section
+  v-bind="getSceneAttributes({
+		position: 'top',
+		model: $prismic.isFilled.contentRelationship(slice.primary.product)? slice.primary.product.uid : undefined
+	})"
 		class="grid md:grid-cols-[3fr_2fr]"
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"

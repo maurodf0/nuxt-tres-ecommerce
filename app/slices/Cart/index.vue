@@ -23,6 +23,10 @@ const { items, removeItem, totalPrice } = useCart();
 			class="bounded rich-text min-h-screen flex flex-col"
 			method="POST"
 			action="/api/checkout"
+			v-bind="getSceneAttributes({
+				position: 'center',
+				model: $prismic.isFilled.contentRelationship(slice.primary.product)? slice.primary.product.uid : undefined
+			})"
 		>
 		<PrismicRichText :field="slice.primary.title" />
 		<ClientOnly>
