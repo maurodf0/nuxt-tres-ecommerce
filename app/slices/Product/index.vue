@@ -68,11 +68,7 @@ upsertItem(singleItem)
 
    <Slidein 
 	 v-if="product"
-	 v-bind="getSceneAttributes({
-		position: 'center',
-		model: product.uid,
-		rotate: true
-	})"
+	v-bind="getSceneAttributes({ position: 'center', model: product.uid, rotate: true })"
 	 as="article"
 	 class="bounded rich-text min-h-[150vh] flex flex-col justify-center">
 			<header :id="product.uid" class="rich-text pt-[25vh]">
