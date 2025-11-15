@@ -1,38 +1,38 @@
-<script setup lang="ts">
-import { gsap } from "gsap"
-defineProps<{
-  as?: string
-}>()
+<script lang="ts" setup>
+import gsap from "gsap"
 
-const el = shallowRef<HTMLElement>()
+defineProps<{ as?: string }>()
+
+const $this = shallowRef<HTMLElement>()
 
 useGSAP((isReducedMotion) => {
-  if(!el.value) return
-  	if (isReducedMotion) {
+	if (!$this.value) {
 		return
 	}
 
-  gsap.set(el.value, {
-    opacity:1,
-  })
+	gsap.set($this.value, { opacity: 1 })
 
-  gsap.from(el.value.children, {
-    y: 50,
-    opacity: 0,
-    delay: 0.3,
-    ease: "power2.out",
-    stagger: 0.2, 
-    scrollTrigger: {
-      trigger: el.value,
-      start: 'top bottom-=25%',
-    }
-  })
+	if (isReducedMotion) {
+		return
+	}
+
+	gsap.from($this.value.children, {
+		opacity: 0,
+		y: 50,
+		delay: 0.3,
+		duration: 1,
+		ease: "power2.out",
+		stagger: 0.2,
+		scrollTrigger: {
+			trigger: $this.value,
+			start: "top bottom-=25%",
+		},
+	})
 })
-
 </script>
 
 <template>
-  <component :is="as || 'section'" ref="el" >
-    <slot />
-  </component>
+	<component :is="as || 'section'" ref="$this">
+		<slot />
+	</component>
 </template>
