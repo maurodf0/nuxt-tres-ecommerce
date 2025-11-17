@@ -192,7 +192,7 @@ useGSAP((isReducedMotion) => {
 		:color="0xFFFFFF"
 	/>
 
-	<SoftShadows :size="50" :samples="10" />
+	<SoftShadows :size="50" :samples="7" />
 
 	<Suspense>
 		<Environment
